@@ -13,7 +13,6 @@ public class Ex7Servlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        // Giả lập dữ liệu
         studentList.add(new Student("Hehe", "12A2", "Xe máy", "22B1-999.88"));
         studentList.add(new Student("Hehehe", "12A2", "Xe máy", "Không có"));
         studentList.add(new Student("Hehehehe", "12A2", "Xe máy", "22B2-999.99"));
