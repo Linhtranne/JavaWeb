@@ -127,7 +127,7 @@
         <%= task.getDescription() %>
       </span>
     <% if (!task.isCompleted()) { %>
-    <a href="todo?complete=<%= i %>">✔ Hoàn thành</a>
+    <a href="ex8?complete=<%= i %>">✔ Hoàn thành</a>
     <% } %>
   </li>
   <%
