@@ -18,7 +18,7 @@ public class Ex8Servlet extends HttpServlet {
         if (description != null && !description.trim().isEmpty()) {
             taskList.add(new Task(description));
         }
-        resp.sendRedirect("todo"); // redirect lại chính nó
+        resp.sendRedirect("ex8");
     }
 
     @Override
