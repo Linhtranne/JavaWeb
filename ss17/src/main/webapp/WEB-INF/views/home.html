@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h2>Danh sách sản phẩm</h2>
+<div th:each="product : ${products}">
+    <div>
+        <img th:src="${product.image}" alt="Hình ảnh sản phẩm" width="100"/>
+        <h3 th:text="${product.productName}"></h3>
+        <p th:text="${product.description}"></p>
+        <p>Giá: <span th:text="${product.price}"></span></p>
+        <p>Kho: <span th:text="${product.stock}"></span></p>
+        <a th:href="@{/product/{id}(id=${product.id})}">Mua</a>
+    </div>
+</div>
+<div>
+        <span th:if="${currentPage > 0}">
+            <a th:href="@{/home(page=${currentPage - 1}, size=${size})}">Trước</a>
+        </span>
+    <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+            <a th:href="@{/home(page=${i}, size=${size})}" th:text="${i + 1}"></a>
+        </span>
+    <span th:if="${currentPage < totalPages - 1}">
+            <a th:href="@{/home(page=${currentPage + 1}, size=${size})}">Sau</a>
+        </span>
+</div>
+</body>
+</html>
