@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danh Sách Phòng Chiếu</title>
+</head>
+<body>
+<h1>Danh Sách Phòng Chiếu</h1>
+<a th:href="@{/screen-rooms/add}">Thêm Phòng Chiếu</a>
+<table border="1">
+  <thead>
+  <tr>
+    <th>Tên Phòng</th>
+    <th>Sức Chứa</th>
+    <th>Loại Màn Hình</th>
+    <th>Trạng Thái</th>
+    <th>Hành Động</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="screenRoom : ${screenRooms}">
+    <td th:text="${screenRoom.roomName}"></td>
+    <td th:text="${screenRoom.capacity}"></td>
+    <td th:text="${screenRoom.screenType}"></td>
+    <td th:text="${screenRoom.status ? 'Hoạt động' : 'Không hoạt động'}"></td>
+    <td>
+      <a th:href="@{/screen-rooms/edit/{id}(id=${screenRoom.id})}">Chỉnh sửa</a>
+      <a th:href="@{/screen-rooms/delete/{id}(id=${screenRoom.id})}">Xoá</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

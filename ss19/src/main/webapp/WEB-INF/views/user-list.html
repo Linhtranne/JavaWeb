@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <title>User Management</title>
+</head>
+<body>
+<h1>Quản lý người dùng</h1>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="user : ${users}">
+    <td th:text="${user.id}"></td>
+    <td th:text="${user.username}"></td>
+    <td th:text="${user.email}"></td>
+    <td th:text="${user.phoneNumber}"></td>
+    <td th:text="${user.isActive ? 'Active' : 'Blocked'}"></td>
+    <td>
+      <form th:action="@{/users/change-status}" method="post">
+        <input type="hidden" name="userId" th:value="${user.id}"/>
+        <input type="hidden" name="isActive" th:value="${!user.isActive}"/>
+        <button type="submit" th:text="${user.isActive ? 'Block' : 'Open'}"></button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div>
+  <button th:if="${currentPage > 1}"
+          th:onclick="|location.href='?page=${currentPage - 1}'|">Trang trước</button>
+  <span th:text="'Trang ' + ${currentPage} + ' trên ' + ${totalPages}"></span>
+  <button th:if="${currentPage < totalPages}"
+          th:onclick="|location.href='?page=${currentPage + 1}'|">Trang tiếp</button>
+</div>
+</body>
+</html>

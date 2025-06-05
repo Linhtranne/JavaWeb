@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Theater List</title>
+</head>
+<body>
+<h1>Theater List</h1>
+<a th:href="@{/theaters/add}">Thêm rạp</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Tên rạp</th>
+        <th>Địa chỉ</th>
+        <th>Số phòng chiếu</th>
+        <th>Trạng thái</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="theater : ${theaters}">
+        <td th:text="${theater.theaterName}"></td>
+        <td th:text="${theater.address}"></td>
+        <td th:text="${theater.numberScreenRoom}"></td>
+        <td th:text="${theater.status ? 'Active' : 'Inactive'}"></td>
+        <td>
+            <a th:href="@{/theaters/edit/{id}(id=${theater.id})}">Sửa</a>
+            <a th:href="@{/theaters/delete/{id}(id=${theater.id})}">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

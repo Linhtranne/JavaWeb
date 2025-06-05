@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vn">
+<head>
+    <meta charset="UTF-8">
+    <title>Theater Form</title>
+</head>
+<body>
+<h1 th:text="${theater.id == null ? 'Thêm rạp' : 'Sửa rạp'}"></h1>
+<form th:action="@{/theaters/add}" th:object="${theater}" method="post">
+    <label>Tên:</label>
+    <input type="text" th:field="*{theaterName}"/>
+    <div th:if="${#fields.hasErrors('theaterName')}" th:errors="*{theaterName}"></div>
+
+    <label>Địa chỉ:</label>
+    <input type="text" th:field="*{address}"/>
+    <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+
+    <label>Số phòng chiếu:</label>
+    <input type="number" th:field="*{numberScreenRoom}"/>
+    <div th:if="${#fields.hasErrors('numberScreenRoom')}" th:errors="*{numberScreenRoom}"></div>
+
+    <label>Trạng thái:</label>
+    <input type="checkbox" th:field="*{status}"/>
+
+    <button type="submit">Thêm</button>
+</form>
+</body>
+</html>
